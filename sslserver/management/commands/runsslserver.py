@@ -51,8 +51,8 @@ class SecureHTTPServer(ThreadedWSGIServer):
         self.socket = ssl.wrap_socket(self.socket, certfile=certificate,
                                       keyfile=key, server_side=True,
                                       ssl_version=_ssl_version,
-                                      cert_reqs=ssl.CERT_NONE)
-
+                                      cert_reqs=ssl.CERT_NONE,
+                                      ciphers='AES256-GCM-SHA384')
 
 class WSGIRequestHandler(WSGIRequestHandler):
     def get_environ(self):
